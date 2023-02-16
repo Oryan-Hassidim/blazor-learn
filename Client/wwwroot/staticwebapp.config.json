@@ -8,12 +8,16 @@
     },
     "routes": [
         {
-            "route": ".auth/login/twitter",
+            "route": "/.auth/login/twitter",
             "statusCode": 404
         },
         {
-            "route": ".auth/login/github",
+            "route": "/.auth/login/github",
             "statusCode": 404
+        },
+        {
+            "route": "/admin*",
+            "allowedRoles": [ "admin" ]
         }
     ]
 }

@@ -1,7 +1,14 @@
-﻿<div class="column is-2">
+﻿@inject HttpClient http
+<div class="column is-2">
     <nav class="menu">
         <p class="menu-label">Menu</p>
         <ul class="menu-list">
+            <li>
+                @user
+            </li>
+            <NavLink href="/.auth/logout" ActiveClass="active-link">
+                logout
+            </NavLink>
             <NavLink href="/.auth/login/aad" ActiveClass="active-link">
                 login
             </NavLink>
@@ -17,3 +24,13 @@
         </ul>
     </nav>
 </div>
+
+@code
+{
+    private string user;
+    protected override async Task OnInitializedAsync()
+    {
+        user = await http.GetStringAsync("/.auth/me");
+    }
+
+}
