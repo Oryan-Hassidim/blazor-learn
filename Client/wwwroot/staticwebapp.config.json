@@ -5,5 +5,15 @@
             "/_framework/*",
             "/css/*"
         ]
-    }
+    },
+    "routes": [
+        {
+            "route": ".auth/login/twitter",
+            "statusCode": 404
+        },
+        {
+            "route": ".auth/login/github",
+            "statusCode": 404
+        }
+    ]
 }
