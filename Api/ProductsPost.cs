@@ -7,6 +7,8 @@ using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Data;
+using System.Security.Claims;
+using System.Linq;
 
 namespace Api;
 
@@ -21,7 +23,7 @@ public class ProductsPost
 
     [FunctionName("ProductsPost")]
     public async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.User, "post", Route = "products")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "products")] HttpRequest req,
         ILogger log)
     {
         var body = await new StreamReader(req.Body).ReadToEndAsync();

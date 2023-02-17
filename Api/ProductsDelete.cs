@@ -22,15 +22,11 @@ public class ProductsDelete
         int productId,
         ILogger log)
     {
+        if (!Auth.Parse(req).IsInRole("admin"))
+            return new BadRequestObjectResult("not admin access");
+
         var result = await productData.DeleteProduct(productId);
 
-        if (result)
-        {
-            return new OkResult();
-        }
-        else
-        {
-            return new BadRequestResult();
-        }
+        return result ? new OkResult() : new BadRequestResult();
     }
 }

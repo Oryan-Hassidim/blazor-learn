@@ -21,7 +21,7 @@
         },
         {
             "route": "/api/products*",
-            "methods": [ "GET" ],
+            "methods": [ "PUT" ],
             "allowedRoles": [ "admin" ]
         }
     ]
