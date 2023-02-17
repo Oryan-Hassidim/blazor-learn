@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csproj", "{8E3921C9-9EF4-42B2-9760-77CFC4633390}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{984B838F-00EC-44D7-B67E-8AF7E5996F61}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Data\Shared.csproj", "{984B838F-00EC-44D7-B67E-8AF7E5996F61}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{04B49CE2-CFC8-42CB-B229-1F54F527E15E}"
 EndProject

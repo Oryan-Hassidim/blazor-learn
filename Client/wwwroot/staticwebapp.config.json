@@ -16,7 +16,12 @@
             "statusCode": 404
         },
         {
-            "route": "/admin*",
+            "route": "/admin/*",
+            "allowedRoles": [ "admin" ]
+        },
+        {
+            "route": "/api/products*",
+            "methods": [ "GET" ],
             "allowedRoles": [ "admin" ]
         }
     ]
