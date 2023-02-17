@@ -2,6 +2,7 @@
 using Shared;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -9,10 +10,15 @@ using System.Text.Json;
 
 namespace Api;
 
-public static class Auth
+public class Auth
 {
+    private readonly JsonSerializerOptions jsonSerializerOptions;
+    public Auth(JsonSerializerOptions jsonSerializerOptions) 
+    {
+        this.jsonSerializerOptions = jsonSerializerOptions;
+    }
 
-    public static ClaimsPrincipal Parse(HttpRequest req)
+    public ClaimsPrincipal Parse(HttpRequest req)
     {
         var principal = new ClientPrincipal();
 
@@ -21,7 +27,7 @@ public static class Auth
             var data = header[0];
             var decoded = Convert.FromBase64String(data);
             var json = Encoding.UTF8.GetString(decoded);
-            principal = JsonSerializer.Deserialize<ClientPrincipal>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            principal = JsonSerializer.Deserialize<ClientPrincipal>(json, jsonSerializerOptions);
         }
 
         principal.UserRoles = principal.UserRoles?.Except(new string[] { "anonymous" }, StringComparer.CurrentCultureIgnoreCase);

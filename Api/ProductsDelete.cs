@@ -10,10 +10,12 @@ namespace Api;
 public class ProductsDelete
 {
     private readonly IProductData productData;
+    private readonly Auth auth;
 
-    public ProductsDelete(IProductData productData)
+    public ProductsDelete(IProductData productData, Auth auth)
     {
         this.productData = productData;
+        this.auth = auth;
     }
 
     [FunctionName("ProductsDelete")]
@@ -22,10 +24,14 @@ public class ProductsDelete
         int productId,
         ILogger log)
     {
-        if (!Auth.Parse(req).IsInRole("admin"))
+        if (!auth.Parse(req).IsInRole("admin"))
+        {
+            log.LogInformation("delete blocked");
             return new BadRequestObjectResult("not admin access");
+        }
 
         var result = await productData.DeleteProduct(productId);
+        log.LogInformation($"delete {productId}: {result}");
 
         return result ? new OkResult() : new BadRequestResult();
     }

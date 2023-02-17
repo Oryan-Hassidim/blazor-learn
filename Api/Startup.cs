@@ -15,6 +15,7 @@ public class Startup : FunctionsStartup
             .AddSingleton<JsonSerializerOptions>(new JsonSerializerOptions()
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            });
+            })
+            .AddSingleton<Auth>();
     }
 }
