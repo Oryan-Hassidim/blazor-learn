@@ -23,7 +23,7 @@ public class GetRoles
 
     [FunctionName("GetRoles")]
     public IActionResult Run(
-        [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req,
         ILogger log)
     {
         var claims = auth.Parse(req);
