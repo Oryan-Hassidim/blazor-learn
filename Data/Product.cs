@@ -1,4 +1,4 @@
-﻿namespace Data;
+﻿namespace ShoppingList.Shared;
 
 public class Product
 {

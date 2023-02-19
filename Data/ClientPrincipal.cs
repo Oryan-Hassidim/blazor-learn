@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Shared;
+namespace ShoppingList.Shared;
 
 public class ClientPrincipal
 {

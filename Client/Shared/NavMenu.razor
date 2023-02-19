@@ -33,10 +33,10 @@
 
 @code
 {
-    private global::Shared.ClientPrincipal user;
+    private ClientPrincipal user;
     protected override async Task OnInitializedAsync()
     {
-        var json = await http.GetFromJsonAsync<global::Shared.ClientPrincipalRoot>("/.auth/me");
+        var json = await http.GetFromJsonAsync<ClientPrincipalRoot>("/.auth/me");
         user = json.clientPrincipal;
     }
 

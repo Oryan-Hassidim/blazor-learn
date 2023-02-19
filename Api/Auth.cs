@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Shared;
+using ShoppingList.Shared;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
