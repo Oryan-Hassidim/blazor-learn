@@ -6,6 +6,10 @@
             "/css/*"
         ]
     },
+    "auth": {
+        "rolesSource": "/api/GetRoles",
+        "identityProviders": {}
+    },
     "routes": [
         {
             "route": "/.auth/login/twitter",

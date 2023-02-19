@@ -64,8 +64,9 @@
 
     private async Task DeleteFromModal()
     {
-        await http.DeleteAsync($"api/products/{productToDelete.Id}");
-        await HandleRefresh();
+        var result = await http.DeleteAsync($"api/products/{productToDelete.Id}");
+        if (result.IsSuccessStatusCode)
+            await HandleRefresh();
         productToDelete = null;
         showModal = false;
     }
