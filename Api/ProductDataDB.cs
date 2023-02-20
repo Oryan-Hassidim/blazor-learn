@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Api;
 
@@ -23,6 +24,7 @@ class ProductDataDB : IProductData
 
     public async Task<Product> AddProduct(Product product)
     {
+        product.Id = products.AsQueryable().Max(p => p.Id) + 1;
         await products.InsertOneAsync(product);
         return product;
     }
@@ -35,7 +37,7 @@ class ProductDataDB : IProductData
 
     public async Task<IEnumerable<Product>> GetProducts()
     {
-        var res = await products.FindAsync(_=>true);
+        var res = await products.FindAsync(_ => true);
         return res.ToList();
     }
 
