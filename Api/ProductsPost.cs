@@ -6,7 +6,9 @@ using Microsoft.Extensions.Logging;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Data;
+using ShoppingList.Shared;
+using System.Security.Claims;
+using System.Linq;
 
 namespace Api;
 
@@ -21,11 +23,14 @@ public class ProductsPost
 
     [FunctionName("ProductsPost")]
     public async Task<IActionResult> Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = "products")] HttpRequest req,
+        [HttpTrigger(AuthorizationLevel.Function, "post", Route = "products")] HttpRequest req,
         ILogger log)
     {
         var body = await new StreamReader(req.Body).ReadToEndAsync();
-        var product = JsonSerializer.Deserialize<Product>(body, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
+        var product = JsonSerializer.Deserialize<Product>(body, new JsonSerializerOptions 
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        });
 
         var newProduct = await productData.AddProduct(product);
         return new OkObjectResult(newProduct);

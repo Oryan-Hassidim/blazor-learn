@@ -1,10 +1,23 @@
-﻿<div class="column is-2">
+﻿@inject HttpClient http
+<div class="column is-2">
     <nav class="menu">
         <p class="menu-label">Menu</p>
         <ul class="menu-list">
-            <NavLink href="/.auth/login/aad" ActiveClass="active-link">
-                login
-            </NavLink>
+            @if (user != null)
+            {
+                <li>
+                    <a href="#">Hello, @user.UserDetails</a>
+                </li>
+                <NavLink href="/.auth/logout" ActiveClass="active-link">
+                    logout
+                </NavLink>
+            }
+            else
+            {
+                <NavLink href="/.auth/login/aad" ActiveClass="active-link">
+                    login
+                </NavLink>
+            }
             <NavLink href="/" Match="NavLinkMatch.All" ActiveClass="active-link">
                 Home
             </NavLink>
@@ -17,3 +30,14 @@
         </ul>
     </nav>
 </div>
+
+@code
+{
+    private ClientPrincipal user;
+    protected override async Task OnInitializedAsync()
+    {
+        var json = await http.GetFromJsonAsync<ClientPrincipalRoot>("/.auth/me");
+        user = json.clientPrincipal;
+    }
+
+}

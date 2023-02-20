@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Data;
+using ShoppingList.Shared;
 
 namespace Api;
 
@@ -16,8 +16,8 @@ public interface IProductData
 
 public class ProductData : IProductData
 {
-    private readonly List<Product> products = new List<Product>
-        {
+    private readonly List<Product> products = new()
+    {
             new Product
             {
                 Id = 10,
